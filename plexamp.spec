@@ -13,6 +13,7 @@ Summary:        A beautiful Plex music player for audiophiles, curators, and hip
 # https://www.plex.tv/about/privacy-legal/plex-terms-of-service
 License:        Proprietary
 URL:            https://plexamp.com/
+ExclusiveArch:  x86_64
 
 Source0:        https://plexamp.plex.tv/plexamp.plex.tv/desktop/Plexamp-%{version}.AppImage
 Source1:        %{name}-wrapper
