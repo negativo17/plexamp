@@ -36,9 +36,14 @@ chmod +x %{SOURCE0}
 
 mv squashfs-root/usr .
 mv squashfs-root/LICENSE* .
-mv squashfs-root/plexamp.desktop .
+mv squashfs-root/%{name}.desktop .
 rm -fr usr/lib
-rm -fr squashfs-root/AppRun
+rm -fr squashfs-root/AppRun squashfs-root/%{name}.png
+
+desktop-file-edit \
+    --set-key Exec --set-value 'plexamp %U' \
+    --remove-key=X-AppImage-Version \
+    %{name}.desktop
 
 %install
 # Main files
