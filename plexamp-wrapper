@@ -1,0 +1,5 @@
+#!/usr/bin/sh
+# WebKitGTK gets disconnected from Wayland (protocol error 71) with NVIDIA explicit sync
+export __NV_DISABLE_EXPLICIT_SYNC=${__NV_DISABLE_EXPLICIT_SYNC:-1}
+
+exec INSTALL_DIR/bin/Plexamp "$@"

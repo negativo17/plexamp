@@ -9,7 +9,7 @@
 
 Name:           plexamp
 Version:        4.50.19
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A beautiful Plex music player for audiophiles, curators, and hipsters
 License:        https://www.plex.tv/about/privacy-legal/plex-terms-of-service
 URL:            https://plexamp.com/
@@ -18,6 +18,7 @@ ExclusiveArch:  x86_64 aarch64
 Source0:        https://plexamp.plex.tv/desktop/Plexamp-%{version}-x86_64.AppImage
 Source1:        https://plexamp.plex.tv/desktop/Plexamp-%{version}-aarch64.AppImage
 Source2:        https://raw.githubusercontent.com/flathub/%{appstream_id}/master/%{appstream_id}.metainfo.xml
+Source10:       %{name}-wrapper
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  libappstream-glib
@@ -44,7 +45,8 @@ for lib in libtreble.so libbass.so libbassmix.so libbass_fx.so libbassenc.so; do
 done
 
 mkdir -p %{buildroot}%{_bindir}
-ln -sr %{buildroot}%{_libdir}/%{name}/bin/Plexamp %{buildroot}%{_bindir}/%{name}
+sed -e 's|INSTALL_DIR|%{_libdir}/%{name}|g' %{SOURCE10} > %{buildroot}%{_bindir}/%{name}
+chmod 0755 %{buildroot}%{_bindir}/%{name}
 
 # Desktop file
 cp Plexamp.desktop %{appstream_id}.desktop
@@ -75,6 +77,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/%{appstream_id
 %{_metainfodir}/%{appstream_id}.metainfo.xml
 
 %changelog
+* Fri Oct 09 2026 Simone Caronni <negativo17@gmail.com> - 4.50.19-2
+- Fix Wayland protocol error with WebKitGTK on NVIDIA.
+
 * Thu Oct 08 2026 Simone Caronni <negativo17@gmail.com> - 4.50.19-1
 - Rebase on 4.50.19.
 - New Tauri based application, use system WebKitGTK and add aarch64 support.
