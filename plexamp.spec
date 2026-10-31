@@ -8,8 +8,8 @@
 %global appstream_id com.plexamp.Plexamp
 
 Name:           plexamp
-Version:        4.50.19
-Release:        2%{?dist}
+Version:        4.50.20
+Release:        1%{?dist}
 Summary:        A beautiful Plex music player for audiophiles, curators, and hipsters
 License:        https://www.plex.tv/about/privacy-legal/plex-terms-of-service
 URL:            https://plexamp.com/
@@ -77,6 +77,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/%{appstream_id
 %{_metainfodir}/%{appstream_id}.metainfo.xml
 
 %changelog
+* Sat Oct 31 2026 Simone Caronni <negativo17@gmail.com> - 4.50.20-1
+- Update to 4.50.20.
+
 * Fri Oct 09 2026 Simone Caronni <negativo17@gmail.com> - 4.50.19-2
 - Fix Wayland protocol error with WebKitGTK on NVIDIA.
 
